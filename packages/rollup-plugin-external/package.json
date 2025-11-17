@@ -1,6 +1,6 @@
 {
     "name": "@lunapress/rollup-plugin-external",
-    "version": "0.0.0-dev-20251117005350",
+    "version": "0.0.0",
     "type": "module",
     "keywords": [
         "lunapress",
