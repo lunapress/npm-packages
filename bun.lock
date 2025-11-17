@@ -19,8 +19,32 @@
     "packages/rollup-plugin-external": {
       "name": "@lunapress/rollup-plugin-external",
       "version": "0.0.0",
+      "dependencies": {
+        "@rollup/pluginutils": "^5.3.0",
+        "estree-walker": "^3.0.3",
+        "is-reference": "^3.0.3",
+        "magic-string": "^0.30.21",
+      },
       "devDependencies": {
+        "@types/estree": "^1.0.8",
         "@types/node": "^20.17.10",
+        "@typescript/native-preview": "7.0.0-dev.20251117.1",
+        "rollup": "^4.28.1",
+      },
+      "peerDependencies": {
+        "rollup": "^4.0.0",
+      },
+      "optionalPeers": [
+        "rollup",
+      ],
+    },
+    "packages/rollup-plugin-wp": {
+      "name": "@lunapress/rollup-plugin-wp",
+      "version": "0.0.0",
+      "dependencies": {
+        "@lunapress/rollup-plugin-external": "@dev",
+      },
+      "devDependencies": {
         "@typescript/native-preview": "7.0.0-dev.20251117.1",
         "rollup": "^4.28.1",
       },
@@ -92,6 +116,8 @@
     "@jridgewell/sourcemap-codec": ["@jridgewell/sourcemap-codec@1.5.5", "", {}, "sha512-cYQ9310grqxueWbl+WuIUIaiUaDcj7WOq5fVhEljNVgRfOUhY9fy2zTvfoqWsnebh8Sl70VScFbICvJnLKB0Og=="],
 
     "@lunapress/rollup-plugin-external": ["@lunapress/rollup-plugin-external@workspace:packages/rollup-plugin-external"],
+
+    "@lunapress/rollup-plugin-wp": ["@lunapress/rollup-plugin-wp@workspace:packages/rollup-plugin-wp"],
 
     "@manypkg/find-root": ["@manypkg/find-root@1.1.0", "", { "dependencies": { "@babel/runtime": "^7.5.5", "@types/node": "^12.7.1", "find-up": "^4.1.0", "fs-extra": "^8.1.0" } }, "sha512-mki5uBvhHzO8kYYix/WRy2WX8S3B5wdVSc9D6KcU5lQNglP2yt58/VfLuAK49glRXChosY8ap2oJ1qgma3GUVA=="],
 
