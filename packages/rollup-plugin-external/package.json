@@ -18,6 +18,11 @@
     "exports": "./dist/index.js",
     "license": "MIT",
     "author": "0zd0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lunapress/npm-packages",
+        "directory": "packages/rollup-plugin-external"
+    },
     "publishConfig": {
         "access": "public"
     },
