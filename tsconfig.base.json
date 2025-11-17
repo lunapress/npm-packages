@@ -6,6 +6,9 @@
 		"declaration": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
-		"esModuleInterop": true
+		"esModuleInterop": true,
+		"noUncheckedIndexedAccess": true,
+		"noFallthroughCasesInSwitch": true,
+		"noErrorTruncation": true
 	}
 }

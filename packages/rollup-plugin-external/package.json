@@ -34,10 +34,17 @@
 			"optional": true
 		}
 	},
+	"dependencies": {
+		"magic-string": "^0.30.21",
+		"@rollup/pluginutils": "^5.3.0",
+		"is-reference": "^3.0.3",
+		"estree-walker": "^3.0.3"
+	},
 	"devDependencies": {
 		"@types/node": "^20.17.10",
 		"rollup": "^4.28.1",
-		"@typescript/native-preview": "7.0.0-dev.20251117.1"
+		"@typescript/native-preview": "7.0.0-dev.20251117.1",
+		"@types/estree": "^1.0.8"
 	},
 	"scripts": {
 		"build": "tsgo -p tsconfig.json"
