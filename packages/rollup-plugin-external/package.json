@@ -36,12 +36,10 @@
     },
     "devDependencies": {
         "@types/node": "^20.17.10",
-        "eslint": "^9.17.0",
         "rollup": "^4.28.1",
-        "typescript": "^5.7.2"
+        "@typescript/native-preview": "7.0.0-dev.20251117.1"
     },
     "scripts": {
-        "build": "tsc -p tsconfig.json",
-        "lint": "deno check"
+        "build": "tsgo -p tsconfig.json"
     }
 }

@@ -27,8 +27,8 @@ writeFileSync(
     `---\n${header}\n---\nforce dev snapshot\n`
 );
 
-execSync(`pnpm build:all`, { stdio: "inherit" });
-execSync(`pnpm changeset version --snapshot dev`, { stdio: "inherit" });
-execSync(`pnpm changeset publish --snapshot --tag dev`, { stdio: "inherit" });
+execSync(`bun build:all`, { stdio: "inherit" });
+execSync(`bun changeset version --snapshot dev`, { stdio: "inherit" });
+execSync(`bun changeset publish --snapshot --tag dev`, { stdio: "inherit" });
 
 console.log("✔ dev release");

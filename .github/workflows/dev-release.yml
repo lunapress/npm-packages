@@ -18,24 +18,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
+#      - name: Setup Node
+#        uses: actions/setup-node@v6
+#        with:
+#          node-version: 22
+#          registry-url: https://registry.npmjs.org/
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: 22
           registry-url: https://registry.npmjs.org/
 
-      - name: Update npm
-        run: npm install -g npm@latest
+#      - name: Update npm
+#        run: npm install -g npm@latest
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          run_install: true
-
-      - name: Setup Deno
-        uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.x
+      - name: Install dependencies
+        run: bun i
 
       - name: Run dev release
-        run: deno run --allow-all scripts/dev-release.ts
+        run: bun dev:release
