@@ -29,6 +29,6 @@ writeFileSync(
 
 execSync(`bun build:all`, { stdio: "inherit" });
 execSync(`bun changeset version --snapshot dev`, { stdio: "inherit" });
-execSync(`bun changeset publish --snapshot --tag dev`, { stdio: "inherit" });
+execSync(`npx changeset publish --snapshot --tag dev`, { stdio: "inherit" });
 
 console.log("✔ dev release");
