@@ -1,0 +1,42 @@
+{
+    "name": "@lunapress/rollup-plugin-external",
+    "version": "0.0.0-dev-20251117005350",
+    "type": "module",
+    "keywords": [
+        "lunapress",
+        "rollup-plugin",
+        "wordpress",
+        "dependency",
+        "extraction",
+        "rollup"
+    ],
+    "files": [
+        "dist",
+        "README.md"
+    ],
+    "types": "./dist/index.d.ts",
+    "exports": "./dist/index.js",
+    "license": "MIT",
+    "author": "0zd0",
+    "publishConfig": {
+        "access": "public"
+    },
+    "peerDependencies": {
+        "rollup": "^4.0.0"
+    },
+    "peerDependenciesMeta": {
+        "rollup": {
+            "optional": true
+        }
+    },
+    "devDependencies": {
+        "@types/node": "^20.17.10",
+        "eslint": "^9.17.0",
+        "rollup": "^4.28.1",
+        "typescript": "^5.7.2"
+    },
+    "scripts": {
+        "build": "tsc -p tsconfig.json",
+        "lint": "deno check"
+    }
+}
