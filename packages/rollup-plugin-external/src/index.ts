@@ -1,7 +1,7 @@
-import {InputOptions, Plugin} from "rollup"
+import { InputOptions, type Plugin } from 'rollup'
 
 export default function lunapressExternal(): Plugin {
-    return {
-        name: 'lunapress-external',
-    }
+	return {
+		name: 'lunapress-external',
+	}
 }

@@ -1,20 +1,23 @@
 {
-  "name": "@lunapress/npm-packages",
-  "private": true,
-  "scripts": {
-    "build:all": "bun --filter '*' build",
-    "test:all": "bun --filter '*' test",
-    "lint:all": "bun --filter '*' lint",
-    "dev:version": "changeset version --snapshot dev",
-    "dev:publish": "changeset publish --snapshot --tag dev",
-    "dev:release": "bun scripts/dev-release.ts"
-  },
-  "devDependencies": {
-    "@changesets/cli": "^2.29.7",
-    "@types/node": "^24.10.1",
-    "@typescript/native-preview": "7.0.0-dev.20251117.1"
-  },
-  "workspaces": [
-    "packages/*"
-  ]
+	"name": "@lunapress/npm-packages",
+	"private": true,
+	"scripts": {
+		"build:all": "bun --filter '*' build",
+		"test:all": "bun --filter '*' test",
+		"fmt:all": "bunx biome format --write",
+		"lint:all": "bunx biome lint --write",
+		"ci:check": "bunx biome ci .",
+		"dev:version": "changeset version --snapshot dev",
+		"dev:publish": "changeset publish --snapshot --tag dev",
+		"dev:release": "bun scripts/dev-release.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.6",
+		"@changesets/cli": "^2.29.7",
+		"@types/node": "^24.10.1",
+		"@typescript/native-preview": "7.0.0-dev.20251117.1"
+	},
+	"workspaces": [
+		"packages/*"
+	]
 }

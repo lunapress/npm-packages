@@ -1,45 +1,45 @@
 {
-    "name": "@lunapress/rollup-plugin-external",
-    "version": "0.0.0",
-    "type": "module",
-    "keywords": [
-        "lunapress",
-        "rollup-plugin",
-        "wordpress",
-        "dependency",
-        "extraction",
-        "rollup"
-    ],
-    "files": [
-        "dist",
-        "README.md"
-    ],
-    "types": "./dist/index.d.ts",
-    "exports": "./dist/index.js",
-    "license": "MIT",
-    "author": "0zd0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/lunapress/npm-packages",
-        "directory": "packages/rollup-plugin-external"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "peerDependencies": {
-        "rollup": "^4.0.0"
-    },
-    "peerDependenciesMeta": {
-        "rollup": {
-            "optional": true
-        }
-    },
-    "devDependencies": {
-        "@types/node": "^20.17.10",
-        "rollup": "^4.28.1",
-        "@typescript/native-preview": "7.0.0-dev.20251117.1"
-    },
-    "scripts": {
-        "build": "tsgo -p tsconfig.json"
-    }
+	"name": "@lunapress/rollup-plugin-external",
+	"version": "0.0.0",
+	"type": "module",
+	"keywords": [
+		"lunapress",
+		"rollup-plugin",
+		"wordpress",
+		"dependency",
+		"extraction",
+		"rollup"
+	],
+	"files": [
+		"dist",
+		"README.md"
+	],
+	"types": "./dist/index.d.ts",
+	"exports": "./dist/index.js",
+	"license": "MIT",
+	"author": "0zd0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lunapress/npm-packages",
+		"directory": "packages/rollup-plugin-external"
+	},
+	"publishConfig": {
+		"access": "public"
+	},
+	"peerDependencies": {
+		"rollup": "^4.0.0"
+	},
+	"peerDependenciesMeta": {
+		"rollup": {
+			"optional": true
+		}
+	},
+	"devDependencies": {
+		"@types/node": "^20.17.10",
+		"rollup": "^4.28.1",
+		"@typescript/native-preview": "7.0.0-dev.20251117.1"
+	},
+	"scripts": {
+		"build": "tsgo -p tsconfig.json"
+	}
 }
