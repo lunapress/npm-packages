@@ -7,6 +7,7 @@ import type { Plugin } from 'rollup'
 import { PLUGIN_NAME } from './const'
 import { defaultDynamicWrapper } from './dynamic'
 import { makeGlobalName } from './global'
+import { isNodeWithStartAndEnd } from './node'
 import { hasScope } from './scope'
 
 export interface LunaPressExternalOptions {
@@ -86,7 +87,7 @@ export default function lunaPressExternal(
 				if (
 					node.type !== 'ImportDeclaration' ||
 					typeof node.source.value !== 'string' ||
-					node.range === undefined
+					!isNodeWithStartAndEnd(node)
 				) {
 					continue
 				}
@@ -120,7 +121,7 @@ export default function lunaPressExternal(
 					}
 				}
 
-				magicString.remove(...node.range)
+				magicString.remove(node.start, node.end)
 				isTouched = true
 			}
 
@@ -134,13 +135,6 @@ export default function lunaPressExternal(
 				enter(this, node: Node, parent: Node | null) {
 					if (hasScope(node)) {
 						scope = node.scope
-					}
-
-					const { range } = node
-
-					if (range === undefined) {
-						this.skip()
-						return
 					}
 
 					if (
@@ -165,9 +159,10 @@ export default function lunaPressExternal(
 						? getGlobalName(dynamicImportSource)
 						: null
 
-					if (dynamicGlobal) {
+					if (dynamicGlobal && isNodeWithStartAndEnd(node)) {
 						magicString.overwrite(
-							...range,
+							node.start,
+							node.end,
 							dynamicWrapper(dynamicGlobal),
 						)
 						isTouched = true
@@ -184,10 +179,18 @@ export default function lunaPressExternal(
 
 						if (bindings.has(name) && !scope.contains(name)) {
 							const global = bindings.get(name)
-							if (global !== undefined) {
-								magicString.overwrite(...range, global, {
-									contentOnly: true,
-								})
+							if (
+								global !== undefined &&
+								isNodeWithStartAndEnd(node)
+							) {
+								magicString.overwrite(
+									node.start,
+									node.end,
+									global,
+									{
+										contentOnly: true,
+									},
+								)
 								isTouched = true
 							}
 						}
