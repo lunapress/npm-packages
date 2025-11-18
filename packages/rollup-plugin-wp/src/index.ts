@@ -61,6 +61,11 @@ export default function lunaPressWordPress(): Plugin {
 			server: {
 				cors: true,
 			},
+			build: {
+				manifest: true,
+				emptyOutDir: true,
+				outDir: '../assets/dist/vite',
+			},
 		}),
 	}
 }
