@@ -11,8 +11,8 @@
 		"dist",
 		"README.md"
 	],
-	"types": "./dist/index.d.ts",
-	"exports": "./dist/index.js",
+	"types": "./dist/index.d.mts",
+	"exports": "./dist/index.mjs",
 	"license": "MIT",
 	"author": "0zd0",
 	"repository": {
@@ -40,10 +40,11 @@
 	"devDependencies": {
 		"@types/node": "^20.17.10",
 		"rollup": "^4.28.1",
+		"@types/estree": "^1.0.8",
 		"@typescript/native-preview": "7.0.0-dev.20251117.1",
-		"@types/estree": "^1.0.8"
+		"tsdown": "^0.16.5"
 	},
 	"scripts": {
-		"build": "tsgo -p tsconfig.json"
+		"build": "tsdown"
 	}
 }

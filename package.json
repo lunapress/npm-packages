@@ -20,7 +20,8 @@
 		"@typescript/native-preview": "7.0.0-dev.20251117.1",
 		"estree-walker": "^3.0.3",
 		"is-reference": "^3.0.3",
-		"magic-string": "^0.30.21"
+		"magic-string": "^0.30.21",
+		"tsdown": "^0.16.5"
 	},
 	"workspaces": [
 		"packages/*"
