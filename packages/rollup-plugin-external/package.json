@@ -38,10 +38,10 @@
 		"estree-walker": "^3.0.3"
 	},
 	"devDependencies": {
-		"@types/node": "^20.17.10",
-		"rollup": "^4.28.1",
 		"@types/estree": "^1.0.8",
+		"@types/node": "^20.17.10",
 		"@typescript/native-preview": "7.0.0-dev.20251117.1",
+		"rollup": "^4.28.1",
 		"tsdown": "^0.16.5"
 	},
 	"scripts": {

@@ -1,8 +1,12 @@
-import lunapressExternal from '@lunapress/rollup-plugin-external'
-import type { Plugin } from 'rollup'
+import { fileURLToPath } from 'node:url'
+import lunaPressExternal from '@lunapress/rollup-plugin-external'
+import type { Plugin } from 'vite'
 
-export default function lunapressWordPress(): Plugin {
-	const external = lunapressExternal({
+const shim = (path: string) =>
+	fileURLToPath(new URL(`./shims/${path}`, import.meta.url))
+
+export default function lunaPressWordPress(): Plugin {
+	const external = lunaPressExternal({
 		globals: {
 			jquery: 'window.jQuery',
 			'lodash-es': 'window.lodash',
@@ -26,5 +30,37 @@ export default function lunapressWordPress(): Plugin {
 	return {
 		...external,
 		name: 'lunapress-wp',
+
+		config: () => ({
+			resolve: {
+				alias: [
+					{
+						find: 'react/jsx-dev-runtime',
+						replacement: shim('react-jsx-runtime-shim.ts'),
+					},
+					{
+						find: 'react/jsx-runtime',
+						replacement: shim('react-jsx-runtime-shim.ts'),
+					},
+					{
+						find: 'react-dom/client',
+						replacement: shim('react-dom-client-shim.ts'),
+					},
+					{
+						find: 'react-dom',
+						replacement: shim('react-dom-shim.ts'),
+					},
+				],
+			},
+			optimizeDeps: {
+				exclude: ['react', 'react-dom'],
+			},
+			define: {
+				$: 'window.jQuery',
+			},
+			server: {
+				cors: true,
+			},
+		}),
 	}
 }

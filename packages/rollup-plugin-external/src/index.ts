@@ -9,7 +9,7 @@ import { defaultDynamicWrapper } from './dynamic'
 import { makeGlobalName } from './global'
 import { hasScope } from './scope'
 
-export interface LunapressExternalOptions {
+export interface LunaPressExternalOptions {
 	/**
 	 * e.g. { 'react': 'window.React' }
 	 */
@@ -29,8 +29,8 @@ export interface LunapressExternalOptions {
 	dynamicWrapper?: (globalName: string) => string
 }
 
-export default function lunapressExternal(
-	options: LunapressExternalOptions,
+export default function lunaPressExternal(
+	options: LunaPressExternalOptions,
 ): Plugin {
 	const {
 		globals,
