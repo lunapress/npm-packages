@@ -37,8 +37,7 @@
         "version": {
             "conventionalCommits": true,
             "preVersionCommand": "nx run-many -t build",
-            "manifestRootsToUpdate": ["{projectRoot}"],
-            "preserveLocalDependencyProtocols": false
+            "manifestRootsToUpdate": ["{projectRoot}"]
         },
         "changelog": {
             "workspaceChangelog": {
