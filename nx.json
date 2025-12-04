@@ -39,6 +39,17 @@
             "preVersionCommand": "nx run-many -t build",
             "manifestRootsToUpdate": ["{projectRoot}"],
             "preserveLocalDependencyProtocols": false
+        },
+        "changelog": {
+            "workspaceChangelog": {
+                "file": false,
+                "createRelease": "github"
+            }
+        },
+        "git": {
+            "commit": true,
+            "tag": true,
+            "push": true
         }
     }
 }
