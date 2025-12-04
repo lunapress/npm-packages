@@ -37,18 +37,18 @@
         "version": {
             "conventionalCommits": true,
             "preVersionCommand": "nx run-many -t build",
-            "manifestRootsToUpdate": ["{projectRoot}"],
-            "git": {
-                "commit": true,
-                "tag": true,
-                "push": true
-            }
+            "manifestRootsToUpdate": ["{projectRoot}"]
         },
         "changelog": {
             "workspaceChangelog": {
                 "file": false,
                 "createRelease": "github"
             }
+        },
+        "git": {
+            "commit": true,
+            "tag": true,
+            "push": true
         }
     }
 }

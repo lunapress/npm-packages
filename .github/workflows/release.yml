@@ -30,11 +30,10 @@ jobs:
           node-version: 24
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: true
 
       - name: Git Identity
         run: |
@@ -44,15 +43,9 @@ jobs:
       - name: 🚧 Dev Release (Snapshot)
         if: github.ref_name == 'dev'
         run: |
-          bun nx release version prerelease --preid=dev-$(git rev-parse --short HEAD) --git-commit=false --git-tag=false --stage-changes=false
-          bun nx release publish --tag dev --yes
+          pnpm nx release version prerelease --preid=dev-$(git rev-parse --short HEAD) --git-commit=false --git-tag=false --stage-changes=false
+          pnpm nx release publish --tag dev --yes
 
       - name: 🚀 Production Release
         if: github.ref_name == 'main'
-        run: |
-          bun nx release version
-          bun scripts/replace-workspace-versions.ts
-          LATEST_TAG=$(git describe --tags --abbrev=0)
-          VERSION=${LATEST_TAG#v}
-          bun nx release changelog $VERSION
-          bun nx release publish --yes
+        run: pnpm nx release --yes
