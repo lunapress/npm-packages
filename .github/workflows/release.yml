@@ -49,4 +49,7 @@ jobs:
 
       - name: 🚀 Production Release
         if: github.ref_name == 'main'
-        run: bun nx release --yes
+        run: |
+          bun nx release version
+          bun scripts/replace-workspace-versions.ts
+          bun nx release --yes
