@@ -27,17 +27,17 @@
         "access": "public"
     },
     "dependencies": {
+        "@lunapress/config": "workspace:*",
         "oclif": "^4.22.52",
-        "ts-morph": "^27.0.2",
-        "@lunapress/config": "workspace:*"
+        "ts-morph": "^27.0.2"
     },
     "devDependencies": {
         "@oclif/core": "^4.8.0",
         "@types/node": "^24.10.1",
         "@typescript/native-preview": "7.0.0-dev.20251130.1",
         "tsdown": "^0.16.8",
-        "vitest": "^4.0.14",
-        "tsx": "^4.21.0"
+        "typescript": "^5.9.3",
+        "vitest": "^4.0.14"
     },
     "oclif": {
         "bin": "cli",

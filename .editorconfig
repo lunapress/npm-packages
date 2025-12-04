@@ -114,12 +114,6 @@ ij_scss_space_before_opening_brace = true
 ij_scss_use_double_quotes = true
 ij_scss_value_alignment = 0
 
-[*.twig]
-ij_twig_keep_indents_on_empty_lines = false
-ij_twig_spaces_inside_comments_delimiters = true
-ij_twig_spaces_inside_delimiters = true
-ij_twig_spaces_inside_variable_delimiters = true
-
 [*.vue]
 indent_size = 2
 tab_width = 2
@@ -588,9 +582,6 @@ ij_markdown_min_lines_around_header = 1
 ij_markdown_min_lines_between_paragraphs = 1
 ij_markdown_wrap_text_if_long = true
 ij_markdown_wrap_text_inside_blockquotes = true
-
-[{*.toml,Cargo.lock,Cargo.toml.orig,Gopkg.lock,Pipfile,poetry.lock,uv.lock}]
-ij_toml_keep_indents_on_empty_lines = false
 
 [{*.yaml,*.yml}]
 indent_size = 2

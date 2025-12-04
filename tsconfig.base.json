@@ -1,14 +1,14 @@
 {
-	"compilerOptions": {
-		"module": "ESNext",
-		"target": "ESNext",
-		"moduleResolution": "node",
-		"declaration": true,
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"esModuleInterop": true,
-		"noUncheckedIndexedAccess": true,
-		"noFallthroughCasesInSwitch": true,
-		"noErrorTruncation": true
-	}
+    "compilerOptions": {
+        "module": "ESNext",
+        "target": "ESNext",
+        "moduleResolution": "node",
+        "declaration": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "noUncheckedIndexedAccess": true,
+        "noFallthroughCasesInSwitch": true,
+        "noErrorTruncation": true
+    }
 }
