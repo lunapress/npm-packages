@@ -36,9 +36,6 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build All
-        run: bun nx run-many -t build
-
       - name: Git Identity
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
