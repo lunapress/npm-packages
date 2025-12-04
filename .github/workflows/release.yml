@@ -52,4 +52,7 @@ jobs:
         run: |
           bun nx release version
           bun scripts/replace-workspace-versions.ts
-          bun nx release --yes
+          LATEST_TAG=$(git describe --tags --abbrev=0)
+          VERSION=${LATEST_TAG#v}
+          bun nx release changelog $VERSION
+          bun nx release publish --yes
