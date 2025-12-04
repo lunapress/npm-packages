@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"module": "ESNext",
 		"target": "ESNext",
-		"moduleResolution": "Node",
+		"moduleResolution": "node",
 		"declaration": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
