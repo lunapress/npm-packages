@@ -47,7 +47,7 @@ jobs:
       - name: 🚧 Dev Release (Snapshot)
         if: github.ref_name == 'dev'
         run: |
-          bun nx release version prerelease --preid=dev-$(git rev-parse --short HEAD) --git-commit=false --git-tag=false --stage-changes=false --yes
+          bun nx release version prerelease --preid=dev-$(git rev-parse --short HEAD) --git-commit=false --git-tag=false --stage-changes=false
           bun nx release publish --tag dev --yes
 
       - name: 🚀 Production Release

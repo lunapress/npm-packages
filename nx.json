@@ -22,5 +22,15 @@
 				"ciTargetName": "test-ci"
 			}
 		}
-	]
+	],
+    "targetDefaults": {
+        "nx-release-publish": {
+            "executor": "nx:run-commands",
+            "options": {
+                "cwd": "{projectRoot}",
+                "command": "npm publish",
+                "parallel": false
+            }
+        }
+    }
 }
