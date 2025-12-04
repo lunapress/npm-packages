@@ -1,47 +1,47 @@
 {
-	"name": "@lunapress/rollup-plugin-wp",
-	"version": "0.0.0",
-	"type": "module",
-	"keywords": [
-		"lunapress",
-		"rollup-plugin",
-		"wordpress",
-		"rollup"
-	],
-	"files": [
-		"dist",
-		"README.md"
-	],
-	"types": "./dist/index.d.mts",
-	"exports": "./dist/index.mjs",
-	"license": "MIT",
-	"author": "0zd0",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/lunapress/npm-packages",
-		"directory": "packages/rollup-plugin-wp"
-	},
-	"publishConfig": {
-		"access": "public"
-	},
-	"peerDependencies": {
-		"vite": "^7.0.0"
-	},
-	"peerDependenciesMeta": {
-		"vite": {
-			"optional": true
-		}
-	},
-	"dependencies": {
-		"@lunapress/rollup-plugin-external": "dev"
-	},
-	"devDependencies": {
-		"rollup": "^4.28.1",
-		"@typescript/native-preview": "7.0.0-dev.20251117.1",
-		"tsdown": "^0.16.5",
-		"vite": "^7.2.2"
-	},
-	"scripts": {
-		"build": "tsdown --copy shims"
-	}
+  "name": "@lunapress/rollup-plugin-wp",
+  "version": "0.0.1",
+  "type": "module",
+  "keywords": [
+    "lunapress",
+    "rollup-plugin",
+    "wordpress",
+    "rollup"
+  ],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "types": "./dist/index.d.mts",
+  "exports": "./dist/index.mjs",
+  "license": "MIT",
+  "author": "0zd0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lunapress/npm-packages",
+    "directory": "packages/rollup-plugin-wp"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vite": "^7.0.0"
+  },
+  "peerDependenciesMeta": {
+    "vite": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@lunapress/rollup-plugin-external": "workspace:*"
+  },
+  "devDependencies": {
+    "rollup": "^4.53.3",
+    "tsdown": "^0.16.8",
+    "vite": "^7.2.4",
+    "@typescript/native-preview": "7.0.0-dev.20251130.1"
+  },
+  "scripts": {
+    "build": "tsdown --copy shims"
+  }
 }

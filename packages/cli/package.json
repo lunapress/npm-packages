@@ -1,0 +1,51 @@
+{
+  "name": "@lunapress/cli",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": {
+    "cli": "./bin/run.js"
+  },
+  "keywords": [
+    "lunapress",
+    "cli"
+  ],
+  "files": [
+    "bin",
+    "dist",
+    "oclif.manifest.json",
+    "README.md"
+  ],
+  "types": "./dist/index.d.mts",
+  "license": "MIT",
+  "author": "0zd0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lunapress/npm-packages",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "oclif": "^4.22.52",
+    "ts-morph": "^27.0.2",
+    "@lunapress/config": "workspace:*"
+  },
+  "devDependencies": {
+    "@oclif/core": "^4.8.0",
+    "@types/node": "^24.10.1",
+    "@typescript/native-preview": "7.0.0-dev.20251130.1",
+    "tsdown": "^0.16.8",
+    "vitest": "^4.0.14",
+    "tsx": "^4.21.0"
+  },
+  "oclif": {
+    "bin": "cli",
+    "dirname": "cli",
+    "commands": "./dist/commands",
+    "plugins": []
+  },
+  "scripts": {
+    "build": "tsdown && oclif manifest"
+  }
+}
