@@ -5,7 +5,8 @@
         "rootDir": "src",
         "paths": {
             "@/cli/*": ["./src/*"],
-            "@/tests/*": ["../../tests/*"]
+            "@/tests/*": ["../../tests/*"],
+            "@lunapress/config": ["../config/src/index.ts"]
         },
         "jsx": "react-jsx"
     },

@@ -22,7 +22,10 @@
     "publishConfig": {
         "access": "public"
     },
-    "dependencies": {},
+    "dependencies": {
+        "jiti": "^2.6.1",
+        "zod": "^4.1.13"
+    },
     "devDependencies": {
         "@types/node": "^24.10.1",
         "@typescript/native-preview": "7.0.0-dev.20251130.1",

@@ -29,9 +29,12 @@
     "dependencies": {
         "@lunapress/config": "workspace:*",
         "@wordpress/i18n": "^6.9.0",
+        "fast-glob": "^3.3.3",
+        "jiti": "^2.6.1",
         "oclif": "^4.22.52",
         "radash": "^12.1.1",
-        "ts-morph": "^27.0.2"
+        "ts-morph": "^27.0.2",
+        "vite": "^7.2.6"
     },
     "devDependencies": {
         "@oclif/core": "^4.8.0",

@@ -4,8 +4,9 @@ import { Extractor } from '@/cli/i18n/pot/extractor'
 import { packageFixtureDataset } from '@/tests/fixture'
 import path from 'node:path'
 import fs from 'node:fs'
+import { Packages } from '@/tests/packages'
 
-const cases = packageFixtureDataset('cli', 'i18n/pot/extractor')
+const cases = packageFixtureDataset(Packages.CLI, 'i18n/pot/extractor')
 
 describe('Extractor', () => {
     it.each(cases)('Case: $name', ({ path: fixturePath }) => {

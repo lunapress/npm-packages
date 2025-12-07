@@ -1,3 +1,6 @@
+import { z } from 'zod'
+import { createJiti, Jiti } from 'jiti'
+
 /**
  * Configuration interface for LunaPress
  */
@@ -21,6 +24,35 @@ export interface LunaPressConfig {
         inputs: string[]
     }
 }
+
+export const lunaPressConfigSchema = z.object({
+    viteConfigPath: z.string().optional(),
+    i18n: z
+        .object({
+            inputs: z.array(z.string()),
+        })
+        .optional(),
+})
+
+export const resolveLunaPressConfig = async (params: {
+    configPath: string
+    initializedJiti?: Jiti
+}): Promise<LunaPressConfig | undefined> => {
+    const { configPath, initializedJiti } = params
+    let jiti = initializedJiti
+
+    if (jiti === undefined) {
+        jiti = createJiti(import.meta.url)
+    }
+
+    const lunaConfigExport = await jiti.import<{ default?: unknown }>(configPath)
+    const lunaConfigRaw = lunaConfigExport.default || lunaConfigExport
+    const lunaConfig = await lunaPressConfigSchema.safeParseAsync(lunaConfigRaw)
+
+    return lunaConfig.data
+}
+
+export const LUNAPRESS_DEFAULT_CONFIG_NAME = 'lunapress.config.ts'
 
 /**
  * Helper to define configuration with type safety.
