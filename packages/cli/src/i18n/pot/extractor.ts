@@ -39,7 +39,7 @@ interface IExtractor {
 }
 
 export class Extractor implements IExtractor {
-    private handlers: Record<string, (node: CallExpression) => TranslationEntry | null>
+    private readonly handlers: Record<string, (node: CallExpression) => TranslationEntry | null>
 
     constructor() {
         this.handlers = {
@@ -53,7 +53,7 @@ export class Extractor implements IExtractor {
         }
     }
 
-    extract({ sourceFile }: ExtractParams): TranslationEntry[] {
+    public extract({ sourceFile }: ExtractParams): TranslationEntry[] {
         const translations: TranslationEntry[] = []
 
         sourceFile.forEachDescendant((node) => {

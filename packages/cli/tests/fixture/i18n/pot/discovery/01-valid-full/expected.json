@@ -1,0 +1,20 @@
+[
+    {
+        "name": "01-valid-full",
+        "rootPath": "",
+        "tsConfigPath": "tsconfig.json",
+        "viteConfigPath": "vite.config.ts",
+        "viteConfig": {
+            "build": {
+                "rollupOptions": {
+                    "input": ["@module/TestNotice/index.tsx"]
+                }
+            }
+        },
+        "lunaPressConfig": {
+            "i18n": {
+                "inputs": ["src/module/TestNotice/index.tsx"]
+            }
+        }
+    }
+]

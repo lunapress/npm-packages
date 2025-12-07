@@ -1,7 +1,9 @@
 import { __, _n, _nx, _x } from '@wordpress/i18n'
 import { DOMAIN } from '@/const'
 
-__('text', DOMAIN)
+const TEXT = 'text'
+
+__(TEXT, DOMAIN)
 
 export default function App() {
     _x('text with context', 'context', DOMAIN)
