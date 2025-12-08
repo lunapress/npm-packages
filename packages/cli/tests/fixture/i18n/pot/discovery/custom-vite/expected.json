@@ -1,0 +1,27 @@
+[
+    {
+        "name": "custom-vite",
+        "rootPath": "",
+        "tsConfigPath": "tsconfig.json",
+        "viteConfigPath": "vite.ts",
+        "viteManifestPath": "dist/.vite/manifest.json",
+        "viteConfig": {
+            "build": {
+                "rollupOptions": {
+                    "input": ["src/module/TestNotice/index.tsx"]
+                }
+            }
+        },
+        "lunaPressConfig": {
+            "viteConfigPath": "vite.ts"
+        },
+        "viteManifest": {
+            "src/module/TestNotice/index.tsx": {
+                "file": "assets/index-l0sNRNKZ.js",
+                "name": "index",
+                "src": "src/module/TestNotice/index.tsx",
+                "isEntry": true
+            }
+        }
+    }
+]

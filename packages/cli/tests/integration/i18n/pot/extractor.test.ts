@@ -8,7 +8,7 @@ import { Packages } from '@/tests/packages'
 
 const cases = packageFixtureDataset(Packages.CLI, 'i18n/pot/extractor')
 
-describe('Extractor', () => {
+describe(Extractor.name, () => {
     it.each(cases)('Case: $name', ({ path: fixturePath }) => {
         const project = new Project({
             tsConfigFilePath: path.join(fixturePath, 'tsconfig.json'),

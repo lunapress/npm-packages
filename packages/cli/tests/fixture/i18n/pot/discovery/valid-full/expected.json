@@ -1,0 +1,25 @@
+[
+    {
+        "name": "valid-full",
+        "rootPath": "",
+        "tsConfigPath": "tsconfig.json",
+        "viteConfigPath": "vite.config.ts",
+        "viteManifestPath": "dist/.vite/manifest.json",
+        "viteConfig": {
+            "build": {
+                "rollupOptions": {
+                    "input": ["@module/TestNotice/index.tsx"]
+                }
+            }
+        },
+        "lunaPressConfig": {},
+        "viteManifest": {
+            "src/module/TestNotice/index.tsx": {
+                "file": "assets/index-DvDYDwvR.js",
+                "name": "index",
+                "src": "src/module/TestNotice/index.tsx",
+                "isEntry": true
+            }
+        }
+    }
+]
