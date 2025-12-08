@@ -1,5 +1,5 @@
 import { Args, Flags, type Interfaces } from '@oclif/core'
-import { ArgsCLI, BaseCommand, type FlagsCLI } from '../../baseCommand'
+import { ArgsCLI, BaseCommand, type FlagsCLI } from '@/cli/baseCommand'
 import { Extractor } from '@/cli/i18n/pot/extractor'
 
 export default class I18nMakePot extends BaseCommand<typeof I18nMakePot> {

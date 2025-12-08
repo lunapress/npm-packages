@@ -6,9 +6,10 @@
         "paths": {
             "@/cli/*": ["./src/*"],
             "@/tests/*": ["../../tests/*"],
-            "@lunapress/config": ["../config/src/index.ts"]
+            "@lunapress/config": ["../config/src"]
         },
         "jsx": "react-jsx"
     },
-    "include": ["src", "tests"]
+    "include": ["src", "tests"],
+    "exclude": ["tests/fixture"]
 }

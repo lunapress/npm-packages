@@ -1,13 +1,30 @@
 import { describe, it, expect } from 'vitest'
+import { build } from 'vite'
 import { ProjectDiscovery } from '@/cli/i18n/pot/projectDiscovery'
 import { packageFixtureDataset } from '@/tests/fixture'
 import path from 'node:path'
 import fs from 'node:fs'
 
+const viteConfig: Record<string, string> = {
+    'custom-vite': 'vite.ts',
+}
+
 const cases = packageFixtureDataset('cli', 'i18n/pot/discovery')
 
-describe('ProjectDiscovery', () => {
-    it.each(cases)('Case: $name', async ({ path: fixturePath }) => {
+describe(ProjectDiscovery.name, () => {
+    it.each(cases)('Case: $name', async ({ path: fixturePath, name }) => {
+        const originalCwd = process.cwd()
+        process.chdir(fixturePath)
+
+        try {
+            await build({
+                configFile:
+                    name in viteConfig ? path.join(fixturePath, viteConfig[name] ?? '') : undefined,
+            })
+        } finally {
+            process.chdir(originalCwd)
+        }
+
         const projectDiscovery = new ProjectDiscovery()
         const projects = await projectDiscovery.scan(fixturePath)
         const expectedPath = path.join(fixturePath, 'expected.json')
@@ -25,6 +42,9 @@ describe('ProjectDiscovery', () => {
             if (rel.viteConfigPath) {
                 expect(project.viteConfigPath).toBe(path.join(fixturePath, rel.viteConfigPath))
             }
+            if (rel.viteManifestPath) {
+                expect(project.viteManifestPath).toBe(path.join(fixturePath, rel.viteManifestPath))
+            }
         })
 
         const normalizedProjects = projects.map((project) => ({
@@ -32,6 +52,7 @@ describe('ProjectDiscovery', () => {
             rootPath: path.relative(fixturePath, project.rootPath),
             tsConfigPath: path.relative(fixturePath, project.tsConfigPath),
             viteConfigPath: path.relative(fixturePath, project.viteConfigPath),
+            viteManifestPath: path.relative(fixturePath, project.viteManifestPath),
         }))
 
         expect(normalizedProjects).toHaveLength(expected.length)
