@@ -146,6 +146,8 @@ vite.config.ts.timestamp-*
 !/.idea/runConfigurations/
 !/.idea/prettier.xml
 !/.idea/compiler.xml
+!/.idea/OxcSettings.xml
+!/.idea/OxfmtSettings.xml
 
 
 .nx/cache

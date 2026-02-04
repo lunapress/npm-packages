@@ -1,0 +1,14 @@
+{
+    "$schema": "./node_modules/oxfmt/configuration_schema.json",
+    "trailingComma": "all",
+    "tabWidth": 4,
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 100,
+    "bracketSpacing": true,
+    "endOfLine": "lf",
+    "bracketSameLine": false,
+    "singleAttributePerLine": true,
+    "experimentalSortPackageJson": false,
+    "ignorePatterns": ["/dist", "/coverage", "/.nx/cache", "/.nx/workspace-data"]
+}

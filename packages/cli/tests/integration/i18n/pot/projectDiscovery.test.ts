@@ -28,8 +28,9 @@ describe(ProjectDiscovery.name, () => {
         const projectDiscovery = new ProjectDiscovery()
         const projects = await projectDiscovery.scan(fixturePath)
         const expectedPath = path.join(fixturePath, 'expected.json')
-        const expected =
-            fs.existsSync(expectedPath) ? JSON.parse(fs.readFileSync(expectedPath, 'utf-8')) : []
+        const expected = fs.existsSync(expectedPath)
+            ? JSON.parse(fs.readFileSync(expectedPath, 'utf-8'))
+            : []
 
         projects.forEach((project, i) => {
             const rel = expected[i]

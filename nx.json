@@ -21,6 +21,12 @@
                 "testTargetName": "test",
                 "ciTargetName": "test-ci"
             }
+        },
+        {
+            "plugin": "@0zd0/nx-oxfmt",
+            "options": {
+                "formatTargetName": "fmt"
+            }
         }
     ],
     "release": {

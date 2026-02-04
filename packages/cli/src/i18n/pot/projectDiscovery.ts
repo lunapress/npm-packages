@@ -120,9 +120,9 @@ export class ProjectDiscovery implements IProjectDiscovery {
     private getViteManifestPath(root: string, viteConfig: ViteUserConfig): string {
         const buildPath = path.join(root, viteConfig.build.outDir)
         const manifestPath =
-            typeof viteConfig.build.manifest === 'string' ?
-                viteConfig.build.manifest
-            :   '.vite/manifest.json'
+            typeof viteConfig.build.manifest === 'string'
+                ? viteConfig.build.manifest
+                : '.vite/manifest.json'
 
         return path.resolve(root, buildPath, manifestPath)
     }
