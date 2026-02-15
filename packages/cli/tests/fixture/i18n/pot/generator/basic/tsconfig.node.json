@@ -22,7 +22,7 @@
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true,
 
-        "isolatedModules": true,
+        "isolatedModules": true
     },
     "include": ["vite.config.ts"]
 }

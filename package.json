@@ -10,7 +10,8 @@
         "nx": "catalog:",
         "oxfmt": "catalog:",
         "syncpack": "catalog:",
-        "typescript": "catalog:"
+        "typescript": "catalog:",
+        "swc-loader": "catalog:"
     },
     "private": true,
     "scripts": {

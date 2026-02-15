@@ -35,11 +35,13 @@
         "oxc-resolver": "catalog:",
         "radash": "catalog:",
         "ts-morph": "catalog:",
-        "vite": "catalog:"
+        "vite": "catalog:",
+        "zod": "catalog:"
     },
     "devDependencies": {
         "@lunapress/rollup-plugin-wp": "workspace:*",
         "@oclif/core": "catalog:",
+        "@oclif/test": "catalog:",
         "@types/node": "catalog:",
         "@types/react": "catalog:",
         "@typescript/native-preview": "catalog:",

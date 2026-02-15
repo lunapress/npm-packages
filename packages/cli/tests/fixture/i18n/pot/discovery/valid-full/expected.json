@@ -21,8 +21,6 @@
                 "isEntry": true
             }
         },
-        "entryPoints": [
-            "src/module/TestNotice/index.tsx"
-        ]
+        "entryPoints": ["src/module/TestNotice/index.tsx"]
     }
 ]
