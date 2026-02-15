@@ -1,6 +1,6 @@
 {
   "name": "@lunapress/cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "bin": {
     "cli": "./bin/run.js"
