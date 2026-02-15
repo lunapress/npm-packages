@@ -20,6 +20,9 @@
                 "src": "src/module/TestNotice/index.tsx",
                 "isEntry": true
             }
-        }
+        },
+        "entryPoints": [
+            "src/module/TestNotice/index.tsx"
+        ]
     }
 ]

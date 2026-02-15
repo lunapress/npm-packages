@@ -24,7 +24,7 @@ interface ContextTranslation extends Translation, HasContext {}
 interface PluralTranslation extends HasPlural, HasDomain {}
 interface ContextPluralTranslation extends PluralTranslation, HasContext {}
 
-type TranslationEntry =
+export type TranslationEntry =
     | Translation
     | PluralTranslation
     | ContextTranslation

@@ -32,15 +32,18 @@
         "fast-glob": "^3.3.3",
         "jiti": "^2.6.1",
         "oclif": "^4.22.52",
+        "oxc-resolver": "^11.17.1",
         "radash": "^12.1.1",
         "ts-morph": "^27.0.2",
         "vite": "^7.2.6"
     },
     "devDependencies": {
+        "@lunapress/rollup-plugin-wp": "workspace:*",
         "@oclif/core": "^4.8.0",
         "@types/node": "^24.10.1",
         "@types/react": "^19.2.7",
         "@typescript/native-preview": "7.0.0-dev.20251130.1",
+        "@vitejs/plugin-react-swc": "^4.2.3",
         "tsdown": "^0.16.8",
         "typescript": "^5.9.3",
         "vite-tsconfig-paths": "^5.1.4",

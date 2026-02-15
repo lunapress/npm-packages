@@ -1,6 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import lunaPressExternal from '@lunapress/rollup-plugin-external'
-import type { Plugin } from 'vite'
+import type { Plugin, UserConfig } from 'vite'
 
 const shim = (path: string) => fileURLToPath(new URL(`./shims/${path}`, import.meta.url))
 
@@ -30,41 +30,51 @@ export default function lunaPressWordPress(): Plugin {
         ...external,
         name: 'lunapress-wp',
 
-        config: () => ({
-            resolve: {
-                alias: [
-                    {
-                        find: 'react/jsx-dev-runtime',
-                        replacement: shim('react-jsx-runtime-shim.ts'),
-                    },
-                    {
-                        find: 'react/jsx-runtime',
-                        replacement: shim('react-jsx-runtime-shim.ts'),
-                    },
-                    {
-                        find: 'react-dom/client',
-                        replacement: shim('react-dom-client-shim.ts'),
-                    },
-                    {
-                        find: 'react-dom',
-                        replacement: shim('react-dom-shim.ts'),
-                    },
-                ],
-            },
-            optimizeDeps: {
-                exclude: ['react', 'react-dom'],
-            },
-            define: {
-                $: 'window.jQuery',
-            },
-            server: {
-                cors: true,
-            },
-            build: {
-                manifest: true,
-                emptyOutDir: true,
-                outDir: '../assets/dist/vite',
-            },
-        }),
+        config: (userConfig) => {
+            const pluginConfig: UserConfig = {
+                resolve: {
+                    alias: [
+                        {
+                            find: 'react/jsx-dev-runtime',
+                            replacement: shim('react-jsx-runtime-shim.ts'),
+                        },
+                        {
+                            find: 'react/jsx-runtime',
+                            replacement: shim('react-jsx-runtime-shim.ts'),
+                        },
+                        {
+                            find: 'react-dom/client',
+                            replacement: shim('react-dom-client-shim.ts'),
+                        },
+                        {
+                            find: 'react-dom',
+                            replacement: shim('react-dom-shim.ts'),
+                        },
+                    ],
+                },
+                optimizeDeps: {
+                    exclude: ['react', 'react-dom'],
+                },
+                define: {
+                    $: 'window.jQuery',
+                },
+                server: {
+                    cors: true,
+                },
+                build: {
+                    manifest: true,
+                },
+            }
+
+            if (userConfig.build?.outDir === undefined) {
+                pluginConfig.build = {
+                    ...pluginConfig.build,
+                    outDir: '../assets/dist/vite',
+                    emptyOutDir: true,
+                }
+            }
+
+            return pluginConfig
+        },
     }
 }

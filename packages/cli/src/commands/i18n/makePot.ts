@@ -1,6 +1,15 @@
 import { Args, Flags, type Interfaces } from '@oclif/core'
 import { ArgsCLI, BaseCommand, type FlagsCLI } from '@/cli/baseCommand'
 import { Extractor } from '@/cli/i18n/pot/extractor'
+import { ProjectDiscovery } from '@/cli/i18n/pot/projectDiscovery'
+import { ChunkTranslation, TranslationGenerator } from '@/cli/i18n/pot/generator'
+
+interface OutputItem {
+    project: string
+    path: string
+    files: ChunkTranslation[]
+}
+type Output = OutputItem[]
 
 export default class I18nMakePot extends BaseCommand<typeof I18nMakePot> {
     static summary = 'Generating JSON translations for .pot'
@@ -23,11 +32,27 @@ export default class I18nMakePot extends BaseCommand<typeof I18nMakePot> {
         }),
     }
 
-    public async run(): Promise<[]> {
+    public async run(): Promise<Output> {
         console.log(this.args)
         console.log(this.flags)
 
-        new Extractor()
-        return []
+        const discovery = new ProjectDiscovery()
+        const projects = await discovery.scan(this.args.source)
+
+        const extractor = new Extractor()
+        const generator = new TranslationGenerator(extractor)
+        const output: Output = []
+
+        for (const project of projects) {
+            const chunks = generator.generate(project)
+
+            output.push({
+                project: project.name,
+                path: project.rootPath,
+                files: chunks,
+            })
+        }
+
+        return output
     }
 }

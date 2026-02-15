@@ -1,0 +1,29 @@
+[
+    {
+        "chunkPath": "assets/dist/vite/assets/index-Dq5Pw6uh.js",
+        "translationEntries": [
+            {
+                "text": "text",
+                "domain": "plugin"
+            },
+            {
+                "text": "text with context",
+                "context": "context",
+                "domain": "plugin"
+            },
+            {
+                "single": "single",
+                "plural": "plural",
+                "domain": "plugin",
+                "number": 3
+            },
+            {
+                "single": "single2",
+                "plural": "plural2",
+                "context": "context2",
+                "domain": "plugin",
+                "number": 4
+            }
+        ]
+    }
+]

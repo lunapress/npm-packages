@@ -1,4 +1,4 @@
-import { Manifest, resolveConfig, ResolvedConfig as ViteUserConfig } from 'vite'
+import { Manifest, resolveConfig, ResolvedConfig as ViteUserConfig, Alias } from 'vite'
 import {
     LUNAPRESS_DEFAULT_CONFIG_NAME,
     type LunaPressConfig,
@@ -9,6 +9,9 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { createJiti } from 'jiti'
 import { z } from 'zod'
+import { ResolverFactory } from 'oxc-resolver'
+import { InputOption } from 'rollup'
+import { ts } from 'ts-morph'
 
 export interface ProjectContext {
     name: string
@@ -19,6 +22,7 @@ export interface ProjectContext {
     viteConfig: ViteUserConfig
     lunaPressConfig: LunaPressConfig
     viteManifest: Manifest
+    entryPoints: string[]
 }
 
 export interface IProjectDiscovery {
@@ -72,37 +76,57 @@ export class ProjectDiscovery implements IProjectDiscovery {
             return null
         }
 
-        const tsConfigPath = path.join(root, 'tsconfig.json')
-        if (!fs.existsSync(tsConfigPath)) {
+        const tsConfigPath = ts.findConfigFile(root, ts.sys.fileExists)
+        if (tsConfigPath === undefined) {
             return null
         }
 
-        let viteConfigPath: string | undefined = undefined
         const customVitePath = lunaPressConfig.viteConfigPath
+            ? path.resolve(root, lunaPressConfig.viteConfigPath)
+            : undefined
 
-        if (customVitePath !== undefined) {
-            viteConfigPath = path.resolve(root, customVitePath)
-        } else {
-            const matches = await fg.async(['vite.config.{ts,js,mts}'], {
-                cwd: root,
-                absolute: true,
-            })
-
-            if (matches.length > 0) {
-                viteConfigPath = matches[0]
-            }
-        }
-
-        if (viteConfigPath === undefined || !fs.existsSync(viteConfigPath)) {
+        if (customVitePath && !fs.existsSync(customVitePath)) {
             return null
         }
 
-        const viteConfig = await resolveConfig({ configFile: viteConfigPath }, 'build')
+        const viteConfig = await resolveConfig(
+            {
+                root,
+                configFile: customVitePath,
+            },
+            'build',
+        )
+
+        if (!viteConfig.configFile) {
+            return null
+        }
+
+        const viteConfigPath = viteConfig.configFile
         const viteManifestPath = this.getViteManifestPath(root, viteConfig)
         const viteManifest = await this.loadViteManifest(viteManifestPath)
 
         if (viteManifest === null) {
             return null
+        }
+
+        const entryPoints: string[] = []
+        const inputList = this.normalizeInputPaths(viteConfig.build.rollupOptions.input)
+        const resolver = new ResolverFactory({
+            tsconfig: {
+                configFile: tsConfigPath,
+                references: 'auto',
+            },
+            alias: this.normalizeViteAlias(viteConfig.resolve.alias),
+            extensions: viteConfig.resolve.extensions ?? ['.ts', '.tsx', '.js', '.jsx', '.json'],
+            mainFields: viteConfig.resolve.mainFields,
+            conditionNames: viteConfig.resolve.conditions,
+        })
+
+        for (const input of inputList) {
+            const result = await resolver.resolveFileAsync(root, input)
+            if (result.path) {
+                entryPoints.push(result.path)
+            }
         }
 
         return {
@@ -114,6 +138,7 @@ export class ProjectDiscovery implements IProjectDiscovery {
             viteConfig,
             lunaPressConfig,
             viteManifest,
+            entryPoints,
         }
     }
 
@@ -139,5 +164,29 @@ export class ProjectDiscovery implements IProjectDiscovery {
         } catch (error) {
             return null
         }
+    }
+
+    private normalizeViteAlias(viteAlias: Alias[]): Record<string, string[]> {
+        const normalized: Record<string, string[]> = {}
+
+        viteAlias.forEach(({ find, replacement }) => {
+            const key = find instanceof RegExp ? find.source : find
+            normalized[key] = [replacement]
+        })
+
+        return normalized
+    }
+
+    private normalizeInputPaths(rawInputs: InputOption | undefined): string[] {
+        let inputList: string[] = []
+        if (typeof rawInputs === 'string') {
+            inputList = [rawInputs]
+        } else if (Array.isArray(rawInputs)) {
+            inputList = rawInputs
+        } else if (rawInputs) {
+            inputList = Object.values(rawInputs)
+        }
+
+        return inputList
     }
 }
