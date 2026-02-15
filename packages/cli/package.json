@@ -58,6 +58,7 @@
     "plugins": []
   },
   "scripts": {
-    "build": "tsdown && oclif manifest"
+    "build": "tsdown && oclif manifest",
+    "prepack": "oclif manifest"
   }
 }
