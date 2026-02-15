@@ -4,30 +4,28 @@ import { join } from 'node:path'
 import lunaPressWordPress from '@lunapress/rollup-plugin-wp'
 
 // https://vite.dev/config/
-export default defineConfig(() => {
-    return {
-        plugins: [react(), lunaPressWordPress()],
-        build: {
-            rollupOptions: {
-                input: ['@module/TestNotice/index.tsx'],
+export default defineConfig({
+    plugins: [react(), lunaPressWordPress()],
+    build: {
+        rollupOptions: {
+            input: ['@module/TestNotice/index.tsx'],
+        },
+        outDir: '../basic/assets/dist/vite',
+    },
+    resolve: {
+        alias: [
+            {
+                find: '@',
+                replacement: join(__dirname, 'src'),
             },
-            outDir: '../basic/assets/dist/vite',
-        },
-        resolve: {
-            alias: [
-                {
-                    find: '@',
-                    replacement: join(__dirname, 'src'),
-                },
-                {
-                    find: '@shared',
-                    replacement: join(__dirname, 'src/shared'),
-                },
-                {
-                    find: '@module',
-                    replacement: join(__dirname, 'src/modules'),
-                },
-            ],
-        },
-    }
+            {
+                find: '@shared',
+                replacement: join(__dirname, 'src/shared'),
+            },
+            {
+                find: '@module',
+                replacement: join(__dirname, 'src/modules'),
+            },
+        ],
+    },
 })

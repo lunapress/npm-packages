@@ -9,7 +9,7 @@ interface OutputItem {
     path: string
     files: ChunkTranslation[]
 }
-type Output = OutputItem[]
+export type Output = OutputItem[]
 
 export default class I18nMakePot extends BaseCommand<typeof I18nMakePot> {
     static summary = 'Generating JSON translations for .pot'
