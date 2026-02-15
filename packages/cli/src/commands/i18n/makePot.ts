@@ -1,5 +1,5 @@
 import { Args, Flags, type Interfaces } from '@oclif/core'
-import { ArgsCLI, BaseCommand, type FlagsCLI } from '@/cli/baseCommand'
+import { BaseCommand } from '@/cli/baseCommand'
 import { Extractor } from '@/cli/i18n/pot/extractor'
 import { ProjectDiscovery } from '@/cli/i18n/pot/projectDiscovery'
 import { ChunkTranslation, TranslationGenerator } from '@/cli/i18n/pot/generator'
@@ -33,9 +33,6 @@ export default class I18nMakePot extends BaseCommand<typeof I18nMakePot> {
     }
 
     public async run(): Promise<Output> {
-        console.log(this.args)
-        console.log(this.flags)
-
         const discovery = new ProjectDiscovery()
         const projects = await discovery.scan(this.args.source)
 

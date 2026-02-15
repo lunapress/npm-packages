@@ -23,13 +23,13 @@
         "access": "public"
     },
     "dependencies": {
-        "jiti": "^2.6.1",
-        "zod": "^4.1.13"
+        "jiti": "catalog:",
+        "zod": "catalog:"
     },
     "devDependencies": {
-        "@types/node": "^24.10.1",
-        "@typescript/native-preview": "7.0.0-dev.20251130.1",
-        "tsdown": "^0.16.8"
+        "@types/node": "catalog:",
+        "@typescript/native-preview": "catalog:",
+        "tsdown": "catalog:"
     },
     "scripts": {
         "build": "tsdown"

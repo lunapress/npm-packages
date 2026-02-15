@@ -25,7 +25,7 @@
         "access": "public"
     },
     "peerDependencies": {
-        "vite": "^7.0.0"
+        "vite": "catalog:peers"
     },
     "peerDependenciesMeta": {
         "vite": {
@@ -36,10 +36,10 @@
         "@lunapress/rollup-plugin-external": "workspace:*"
     },
     "devDependencies": {
-        "rollup": "^4.53.3",
-        "tsdown": "^0.16.8",
-        "vite": "^7.2.4",
-        "@typescript/native-preview": "7.0.0-dev.20251130.1"
+        "rollup": "catalog:",
+        "tsdown": "catalog:",
+        "vite": "catalog:",
+        "@typescript/native-preview": "catalog:"
     },
     "scripts": {
         "build": "tsdown --copy shims"
