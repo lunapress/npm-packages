@@ -1,63 +1,63 @@
 {
-    "name": "@lunapress/cli",
-    "version": "0.1.3",
-    "type": "module",
-    "bin": {
-        "cli": "./bin/run.js"
-    },
-    "keywords": [
-        "lunapress",
-        "cli"
-    ],
-    "files": [
-        "bin",
-        "dist",
-        "oclif.manifest.json",
-        "README.md"
-    ],
-    "types": "./dist/index.d.mts",
-    "license": "MIT",
-    "author": "0zd0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/lunapress/npm-packages",
-        "directory": "packages/cli"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "dependencies": {
-        "@lunapress/config": "workspace:*",
-        "@wordpress/i18n": "catalog:",
-        "fast-glob": "catalog:",
-        "jiti": "catalog:",
-        "oclif": "catalog:",
-        "oxc-resolver": "catalog:",
-        "radash": "catalog:",
-        "ts-morph": "catalog:",
-        "vite": "catalog:",
-        "zod": "catalog:"
-    },
-    "devDependencies": {
-        "@lunapress/rollup-plugin-wp": "workspace:*",
-        "@oclif/core": "catalog:",
-        "@oclif/test": "catalog:",
-        "@types/node": "catalog:",
-        "@types/react": "catalog:",
-        "@typescript/native-preview": "catalog:",
-        "@vitejs/plugin-react-swc": "catalog:",
-        "tsdown": "catalog:",
-        "typescript": "catalog:",
-        "vite-tsconfig-paths": "catalog:",
-        "vitest": "catalog:"
-    },
-    "oclif": {
-        "bin": "cli",
-        "dirname": "cli",
-        "commands": "./dist/commands",
-        "plugins": []
-    },
-    "scripts": {
-        "build": "tsdown && oclif manifest"
-    }
+  "name": "@lunapress/cli",
+  "version": "0.1.4",
+  "type": "module",
+  "bin": {
+    "cli": "./bin/run.js"
+  },
+  "keywords": [
+    "lunapress",
+    "cli"
+  ],
+  "files": [
+    "bin",
+    "dist",
+    "oclif.manifest.json",
+    "README.md"
+  ],
+  "types": "./dist/index.d.mts",
+  "license": "MIT",
+  "author": "0zd0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lunapress/npm-packages",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@lunapress/config": "workspace:*",
+    "@wordpress/i18n": "catalog:",
+    "fast-glob": "catalog:",
+    "jiti": "catalog:",
+    "oclif": "catalog:",
+    "oxc-resolver": "catalog:",
+    "radash": "catalog:",
+    "ts-morph": "catalog:",
+    "vite": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@lunapress/rollup-plugin-wp": "workspace:*",
+    "@oclif/core": "catalog:",
+    "@oclif/test": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@typescript/native-preview": "catalog:",
+    "@vitejs/plugin-react-swc": "catalog:",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vite-tsconfig-paths": "catalog:",
+    "vitest": "catalog:"
+  },
+  "oclif": {
+    "bin": "cli",
+    "dirname": "cli",
+    "commands": "./dist/commands",
+    "plugins": []
+  },
+  "scripts": {
+    "build": "tsdown && oclif manifest"
+  }
 }
