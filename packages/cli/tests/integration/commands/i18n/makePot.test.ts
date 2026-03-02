@@ -1,4 +1,4 @@
-import { captureOutput, runCommand } from '@oclif/test'
+import { runCommand } from '@oclif/test'
 import { describe, expect, it } from 'vitest'
 import * as path from 'node:path'
 import { packageFixtureDataset } from '@/tests/fixture'

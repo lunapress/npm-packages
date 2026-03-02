@@ -140,6 +140,9 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
+      zod:
+        specifier: 'catalog:'
+        version: 4.1.13
 
   packages/cli:
     dependencies:
@@ -195,6 +198,9 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: 'catalog:'
         version: 4.2.3(vite@7.2.6(@types/node@24.10.10)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.2))
+      rollup:
+        specifier: 'catalog:'
+        version: 4.53.3
       tsdown:
         specifier: 'catalog:'
         version: 0.16.8(@typescript/native-preview@7.0.0-dev.20260204.1)(oxc-resolver@11.17.1)(typescript@5.9.3)

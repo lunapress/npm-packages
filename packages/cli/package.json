@@ -49,7 +49,8 @@
     "tsdown": "catalog:",
     "typescript": "catalog:",
     "vite-tsconfig-paths": "catalog:",
-    "vitest": "catalog:"
+    "vitest": "catalog:",
+    "rollup": "catalog:"
   },
   "oclif": {
     "bin": "cli",

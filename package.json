@@ -11,7 +11,8 @@
         "oxfmt": "catalog:",
         "syncpack": "catalog:",
         "typescript": "catalog:",
-        "swc-loader": "catalog:"
+        "swc-loader": "catalog:",
+        "zod": "catalog:"
     },
     "private": true,
     "scripts": {

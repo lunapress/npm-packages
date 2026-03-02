@@ -41,7 +41,10 @@ interface IExtractor {
 export class Extractor implements IExtractor {
     private readonly handlers: Record<string, (node: CallExpression) => TranslationEntry | null>
 
-    constructor() {
+    constructor(
+        private domains: string[] = [],
+        private ignoreDomains: string[] = [],
+    ) {
         this.handlers = {
             __: this.extractBasic.bind(this),
 
@@ -63,15 +66,23 @@ export class Extractor implements IExtractor {
             const functionName = expression.getText()
 
             const handler = this.handlers[functionName]
-            if (handler) {
+            if (handler !== undefined) {
                 const result = handler(node)
-                if (result) {
+                if (result !== null && !this.shouldSkipDomain(result.domain)) {
                     translations.push(result)
                 }
             }
         })
 
         return translations
+    }
+
+    private shouldSkipDomain(domain: string): boolean {
+        if (this.ignoreDomains.includes(domain)) {
+            return true
+        }
+
+        return this.domains.length > 0 && !this.domains.includes(domain)
     }
 
     private extractBasic(node: CallExpression): Translation | null {

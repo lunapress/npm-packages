@@ -21,22 +21,25 @@ export default class I18nMakePot extends BaseCommand<typeof I18nMakePot> {
         }),
     }
 
-    static flags: Interfaces.FlagInput = {
+    static flags = {
         domains: Flags.string({
             summary: 'Consider only specific domains',
-            required: false,
+            multiple: true,
         }),
         ignoreDomains: Flags.string({
             summary: 'Ignore domains',
-            required: false,
+            multiple: true,
         }),
     }
 
     public async run(): Promise<Output> {
+        const domains = this.flags.domains || []
+        const ignoreDomains = this.flags.ignoreDomains || []
+
         const discovery = new ProjectDiscovery()
         const projects = await discovery.scan(this.args.source)
 
-        const extractor = new Extractor()
+        const extractor = new Extractor(domains, ignoreDomains)
         const generator = new TranslationGenerator(extractor)
         const output: Output = []
 
