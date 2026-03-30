@@ -1,24 +1,34 @@
 [
     {
+        "sourceFile": "src/App.tsx",
+        "line": 6,
         "text": "text",
         "domain": "plugin"
     },
     {
+        "sourceFile": "src/App.tsx",
+        "line": 8,
         "text": "without domain",
         "domain": "default"
     },
     {
+        "sourceFile": "src/App.tsx",
+        "line": 11,
         "text": "text with context",
         "context": "context",
         "domain": "plugin"
     },
     {
+        "sourceFile": "src/App.tsx",
+        "line": 15,
         "single": "single",
         "plural": "plural",
         "number": 3,
         "domain": "plugin"
     },
     {
+        "sourceFile": "src/App.tsx",
+        "line": 20,
         "single": "single2",
         "plural": "plural2",
         "number": 4,

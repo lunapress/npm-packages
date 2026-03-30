@@ -1,5 +1,4 @@
 import { describe, it, expect } from 'vitest'
-import { build } from 'vite'
 import { ProjectContext, ProjectDiscovery } from '@/cli/i18n/pot/projectDiscovery'
 import { packageFixtureDataset } from '@/tests/fixture'
 import path from 'node:path'

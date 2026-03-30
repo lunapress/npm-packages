@@ -35,7 +35,7 @@ describe('i18n:make-pot', () => {
         expect(output[0]).toMatchObject({
             project: expect.any(String),
             path: expect.any(String),
-            files: expect.any(Array),
+            assets: expect.any(Array),
         })
     })
 })

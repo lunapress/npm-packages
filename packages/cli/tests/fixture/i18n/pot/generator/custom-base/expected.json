@@ -1,0 +1,13 @@
+[
+    {
+        "assetPath": "custom-base/dist/assets/index-DEyuBLwr.js",
+        "entries": [
+            {
+                "sourceFile": "custom-base/src/index.ts",
+                "line": 3,
+                "text": "text",
+                "domain": "default"
+            }
+        ]
+    }
+]

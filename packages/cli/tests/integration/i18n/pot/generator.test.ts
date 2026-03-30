@@ -1,4 +1,4 @@
-import { packageFixtureDataset } from '@/tests/fixture'
+import { loadFixtureOptions, packageFixtureDataset } from '@/tests/fixture'
 import { Packages } from '@/tests/packages'
 import { describe, expect, it } from 'vitest'
 import path from 'node:path'
@@ -7,6 +7,11 @@ import { TranslationGenerator } from '@/cli/i18n/pot/generator'
 import { Extractor } from '@/cli/i18n/pot/extractor'
 import { ProjectDiscovery } from '@/cli/i18n/pot/projectDiscovery'
 import { preBuildViteProject } from '@/tests/vite'
+import { z } from 'zod'
+
+const OptionsSchema = z.object({
+    basePath: z.string().optional(),
+})
 
 const cases = packageFixtureDataset(Packages.CLI, 'i18n/pot/generator')
 
@@ -16,7 +21,13 @@ describe(TranslationGenerator.name, () => {
 
         const discovery = new ProjectDiscovery()
         const extractor = new Extractor()
-        const generator = new TranslationGenerator(extractor)
+
+        const options = loadFixtureOptions(fixturePath, OptionsSchema)
+        const basePath = options.basePath
+            ? path.resolve(fixturePath, options.basePath)
+            : fixturePath
+
+        const generator = new TranslationGenerator(extractor, basePath)
 
         const projects = await discovery.scan(fixturePath)
         expect(projects).toHaveLength(1)

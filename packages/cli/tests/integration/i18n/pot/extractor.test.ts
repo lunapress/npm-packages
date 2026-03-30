@@ -26,7 +26,12 @@ describe(Extractor.name, () => {
         const { domains, ignoreDomains } = loadFixtureOptions(fixturePath, OptionsSchema)
 
         const extractor = new Extractor(domains, ignoreDomains)
-        const result = extractor.extract({ sourceFile: appFile })
+        const rawResult = extractor.extract({ sourceFile: appFile })
+
+        const result = rawResult.map((entry) => ({
+            ...entry,
+            sourceFile: path.relative(fixturePath, entry.sourceFile).replace(/\\/g, '/'),
+        }))
 
         expect(result).toMatchObject(expected)
     })

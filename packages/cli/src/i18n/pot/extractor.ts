@@ -1,6 +1,11 @@
 import { SourceFile, Node, type CallExpression } from 'ts-morph'
 import { isNumber, isString } from 'radash'
 
+export interface SourceLocation {
+    sourceFile: string
+    line: number
+}
+
 interface HasContext {
     context: string
 }
@@ -19,9 +24,9 @@ interface HasDomain {
     domain: string
 }
 
-interface Translation extends HasText, HasDomain {}
+interface Translation extends HasText, HasDomain, SourceLocation {}
 interface ContextTranslation extends Translation, HasContext {}
-interface PluralTranslation extends HasPlural, HasDomain {}
+interface PluralTranslation extends HasPlural, HasDomain, SourceLocation {}
 interface ContextPluralTranslation extends PluralTranslation, HasContext {}
 
 export type TranslationEntry =
@@ -29,6 +34,8 @@ export type TranslationEntry =
     | PluralTranslation
     | ContextTranslation
     | ContextPluralTranslation
+
+type RawEntry<T> = Omit<T, keyof SourceLocation>
 
 type ExtractParams = {
     sourceFile: SourceFile
@@ -79,6 +86,13 @@ export class Extractor implements IExtractor {
         return translations
     }
 
+    private getLocation(node: CallExpression): SourceLocation {
+        return {
+            sourceFile: node.getSourceFile().getFilePath(),
+            line: node.getStartLineNumber(),
+        }
+    }
+
     private resolveDomain(node: CallExpression, index: number): string {
         return this.resolveStringArg(node, index) ?? DEFAULT_DOMAIN
     }
@@ -97,7 +111,7 @@ export class Extractor implements IExtractor {
 
         if (text === null) return null
 
-        return { text, domain }
+        return { ...this.getLocation(node), text, domain }
     }
 
     private extractContext(node: CallExpression): ContextTranslation | null {
@@ -107,7 +121,7 @@ export class Extractor implements IExtractor {
 
         if (text === null || context === null) return null
 
-        return { text, context, domain }
+        return { ...this.getLocation(node), text, context, domain }
     }
 
     private extractPlural(node: CallExpression): PluralTranslation | null {
@@ -118,7 +132,7 @@ export class Extractor implements IExtractor {
 
         if (single === null || plural === null || numberVal === null) return null
 
-        return { single, plural, number: numberVal, domain }
+        return { ...this.getLocation(node), single, plural, number: numberVal, domain }
     }
 
     private extractContextPlural(node: CallExpression): ContextPluralTranslation | null {
@@ -131,7 +145,7 @@ export class Extractor implements IExtractor {
         if (single === null || plural === null || context === null || numberValue === null)
             return null
 
-        return { single, plural, number: numberValue, context, domain }
+        return { ...this.getLocation(node), single, plural, number: numberValue, context, domain }
     }
 
     private resolveStringArg(node: CallExpression, index: number): string | null {

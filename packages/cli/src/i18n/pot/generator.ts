@@ -3,24 +3,23 @@ import path from 'node:path'
 import { ProjectContext } from './projectDiscovery'
 import { Extractor, TranslationEntry } from './extractor'
 
-export interface ChunkTranslation {
-    chunkPath: string
-    translationEntries: TranslationEntry[]
+export interface AssetTranslations {
+    assetPath: string
+    entries: TranslationEntry[]
 }
 
 export interface ITranslationGenerator {
-    generate(context: ProjectContext): ChunkTranslation[]
+    generate(context: ProjectContext): AssetTranslations[]
 }
 
 export class TranslationGenerator implements ITranslationGenerator {
-    private extractor: Extractor
+    constructor(
+        private extractor: Extractor,
+        private basePath: string,
+    ) {}
 
-    constructor(extractor: Extractor) {
-        this.extractor = extractor
-    }
-
-    public generate(context: ProjectContext): ChunkTranslation[] {
-        const { rootPath, tsConfigPath, viteManifest, entryPoints, viteConfig } = context
+    public generate(context: ProjectContext): AssetTranslations[] {
+        const { rootPath, tsConfigPath, viteManifest, entryPoints } = context
         const configGroups = this.groupEntriesByConfig(tsConfigPath, entryPoints)
 
         return Array.from(configGroups.entries()).flatMap(([configPath, groupEntryPoints]) => {
@@ -34,27 +33,34 @@ export class TranslationGenerator implements ITranslationGenerator {
                     const dependencyFiles = this.collectDependencies(project, entryPoint)
                     if (dependencyFiles.length === 0) return null
 
-                    const translationEntries = dependencyFiles.flatMap((sourceFile) =>
-                        this.extractor.extract({ sourceFile }),
+                    const entries = dependencyFiles.flatMap((sourceFile) =>
+                        this.extractor.extract({ sourceFile }).map((entry) => ({
+                            ...entry,
+                            sourceFile: path
+                                .relative(this.basePath, entry.sourceFile)
+                                .replace(/\\/g, '/'),
+                        })),
                     )
 
-                    if (translationEntries.length === 0) return null
+                    if (entries.length === 0) return null
 
                     const manifestKey = path.relative(rootPath, entryPoint)
                     const manifestItem = viteManifest[manifestKey]
 
-                    if (!manifestItem?.file) return null
+                    if (manifestItem?.file === undefined) return null
 
                     const absoluteOutDir = path.resolve(rootPath, context.viteConfig.build.outDir)
-                    const relativeOutDir = path.relative(rootPath, absoluteOutDir)
-                    const chunkPath = path.join(relativeOutDir, manifestItem.file)
+                    const absoluteAssetPath = path.resolve(absoluteOutDir, manifestItem.file)
+                    const assetPath = path
+                        .relative(this.basePath, absoluteAssetPath)
+                        .replace(/\\/g, '/')
 
                     return {
-                        chunkPath,
-                        translationEntries,
+                        assetPath,
+                        entries,
                     }
                 })
-                .filter((item): item is ChunkTranslation => item !== null)
+                .filter((item): item is AssetTranslations => item !== null)
         })
     }
 

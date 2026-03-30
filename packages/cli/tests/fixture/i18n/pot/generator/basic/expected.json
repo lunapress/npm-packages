@@ -1,28 +1,36 @@
 [
     {
-        "chunkPath": "assets/dist/vite/assets/index-Dq5Pw6uh.js",
-        "translationEntries": [
+        "assetPath": "assets/dist/vite/assets/index-Dq5Pw6uh.js",
+        "entries": [
             {
+                "sourceFile": "src/modules/TestNotice/ui/Notice/Notice.tsx",
+                "line": 6,
                 "text": "text",
                 "domain": "plugin"
             },
             {
+                "sourceFile": "src/modules/TestNotice/ui/Notice/Notice.tsx",
+                "line": 9,
                 "text": "text with context",
                 "context": "context",
                 "domain": "plugin"
             },
             {
+                "sourceFile": "src/modules/TestNotice/ui/Notice/Notice.tsx",
+                "line": 13,
                 "single": "single",
                 "plural": "plural",
-                "domain": "plugin",
-                "number": 3
+                "number": 3,
+                "domain": "plugin"
             },
             {
+                "sourceFile": "src/modules/TestNotice/ui/Notice/Notice.tsx",
+                "line": 18,
                 "single": "single2",
                 "plural": "plural2",
+                "number": 4,
                 "context": "context2",
-                "domain": "plugin",
-                "number": 4
+                "domain": "plugin"
             }
         ]
     }

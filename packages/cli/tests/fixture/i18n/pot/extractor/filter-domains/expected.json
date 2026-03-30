@@ -1,5 +1,7 @@
 [
     {
+        "sourceFile": "src/App.tsx",
+        "line": 3,
         "text": "default string",
         "domain": "default"
     }
