@@ -38,6 +38,8 @@ interface IExtractor {
     extract(params: ExtractParams): TranslationEntry[]
 }
 
+const DEFAULT_DOMAIN = 'default'
+
 export class Extractor implements IExtractor {
     private readonly handlers: Record<string, (node: CallExpression) => TranslationEntry | null>
 
@@ -77,6 +79,10 @@ export class Extractor implements IExtractor {
         return translations
     }
 
+    private resolveDomain(node: CallExpression, index: number): string {
+        return this.resolveStringArg(node, index) ?? DEFAULT_DOMAIN
+    }
+
     private shouldSkipDomain(domain: string): boolean {
         if (this.ignoreDomains.includes(domain)) {
             return true
@@ -87,9 +93,9 @@ export class Extractor implements IExtractor {
 
     private extractBasic(node: CallExpression): Translation | null {
         const text = this.resolveStringArg(node, 0)
-        const domain = this.resolveStringArg(node, 1)
+        const domain = this.resolveDomain(node, 1)
 
-        if (!text || !domain) return null
+        if (text === null) return null
 
         return { text, domain }
     }
@@ -97,9 +103,9 @@ export class Extractor implements IExtractor {
     private extractContext(node: CallExpression): ContextTranslation | null {
         const text = this.resolveStringArg(node, 0)
         const context = this.resolveStringArg(node, 1)
-        const domain = this.resolveStringArg(node, 2)
+        const domain = this.resolveDomain(node, 2)
 
-        if (!text || !context || !domain) return null
+        if (text === null || context === null) return null
 
         return { text, context, domain }
     }
@@ -108,9 +114,9 @@ export class Extractor implements IExtractor {
         const single = this.resolveStringArg(node, 0)
         const plural = this.resolveStringArg(node, 1)
         const numberVal = this.resolveNumberArg(node, 2)
-        const domain = this.resolveStringArg(node, 3)
+        const domain = this.resolveDomain(node, 3)
 
-        if (!single || !plural || !domain || numberVal === null) return null
+        if (single === null || plural === null || numberVal === null) return null
 
         return { single, plural, number: numberVal, domain }
     }
@@ -120,9 +126,10 @@ export class Extractor implements IExtractor {
         const plural = this.resolveStringArg(node, 1)
         const numberValue = this.resolveNumberArg(node, 2)
         const context = this.resolveStringArg(node, 3)
-        const domain = this.resolveStringArg(node, 4)
+        const domain = this.resolveDomain(node, 4)
 
-        if (!single || !plural || !context || !domain || numberValue === null) return null
+        if (single === null || plural === null || context === null || numberValue === null)
+            return null
 
         return { single, plural, number: numberValue, context, domain }
     }

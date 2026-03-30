@@ -5,6 +5,8 @@ const TEXT = 'text'
 
 __(TEXT, DOMAIN)
 
+__('without domain')
+
 export default function App() {
     _x('text with context', 'context', DOMAIN)
 

@@ -4,6 +4,10 @@
         "domain": "plugin"
     },
     {
+        "text": "without domain",
+        "domain": "default"
+    },
+    {
         "text": "text with context",
         "context": "context",
         "domain": "plugin"
